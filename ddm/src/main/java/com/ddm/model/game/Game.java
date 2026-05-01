@@ -1,5 +1,8 @@
 package com.ddm.model.game;
 
+import java.util.Map;
+
+import com.ddm.model.game.Dice.DiceRollResult;
 import com.ddm.model.player.Player;
 
 public class Game {
@@ -14,12 +17,24 @@ public class Game {
         this.player2 = player2;
         this.currentPlayer = player1;
     }
-    
+
     public void nextTurn() {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public boolean canSummon(DiceRollResult result) {
+        Map<Integer, Long> invocations = result.getInvocationByLevel();
+
+        // solo un nivel presente
+        if (invocations.size() != 1) {
+            return false;
+        }
+
+        // al menos 2 del mismo nivel
+        return invocations.values().iterator().next() >= 2;
     }
 }

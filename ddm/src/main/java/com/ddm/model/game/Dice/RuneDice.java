@@ -1,4 +1,4 @@
-package com.ddm.model.game;
+package com.ddm.model.game.Dice;
 
 import com.ddm.enums.RuneType;
 
