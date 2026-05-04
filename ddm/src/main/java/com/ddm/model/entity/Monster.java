@@ -20,7 +20,8 @@ public class Monster {
     private int defense;
     private int health;
 
-    private int position;
+    private int positionX;
+    private int positionY;
 
     private MonsterDice dice;
 
@@ -32,7 +33,8 @@ public class Monster {
         int attack, 
         int defense, 
         int health, 
-        int position,
+        int positionX,
+        int positionY,
         MonsterDice dice
     ) {
         this.name = name;
@@ -42,7 +44,8 @@ public class Monster {
         this.attack = attack;
         this.defense = defense;
         this.health = health;
-        this.position = position;
+        this.positionX = positionX;
+        this.positionY = positionY;
         this.dice = dice;
     }
 
@@ -91,7 +94,8 @@ public class Monster {
         return health;
     }
 
-    public int getPosition() {
+    public int[] getPosition() {
+        int[] position = new int[] {positionX, positionY};
         return position;
     }
 

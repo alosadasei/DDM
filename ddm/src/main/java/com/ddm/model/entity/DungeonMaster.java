@@ -4,11 +4,13 @@ public class DungeonMaster {
     
     private Long id;
     private int health;
-    private int position;
+    private int positionX;
+    private int positionY;
 
-    public DungeonMaster(int health, int position) {
+    public DungeonMaster(int health, int positionX, int positionY) {
         this.health = health;
-        this.position = position;
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
 
     public void receiveDamage(int damage) {

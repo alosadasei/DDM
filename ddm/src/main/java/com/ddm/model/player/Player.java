@@ -1,14 +1,24 @@
 package com.ddm.model.player;
 
 import com.ddm.enums.RuneType;
+import com.ddm.model.entity.Monster;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Player {
     
     private Long id;
     private String name;
+
+    // 15 monstruos al inicio de la partida
+    private List<Monster> monsterPool = new ArrayList<>();
+
+    // 3 monstruos que se seleccional al iniciar el turno
+
+    private List<Monster> selectedMonsters = new ArrayList<>();
 
     // Runas acumuladas
     private Map<RuneType, Integer> runePool = new HashMap<>();
@@ -39,5 +49,33 @@ public class Player {
 
     public Map<RuneType, Integer> getRunePool() {
         return runePool;
+    }
+
+    public void addMonster(Monster monster) {
+        if(monsterPool.size() >= 15) {
+            throw new IllegalStateException("Full monster pool");
+        }
+        monsterPool.add(monster);
+    }
+
+    public void selectMonsters(List<Monster> monsters) {
+        if(monsters.size() != 3) {
+            throw new IllegalStateException("Must be exactly 3 monsters");
+        }
+
+        for (Monster monster : monsters) {
+            if(!monsterPool.contains(monster)){
+                throw new IllegalStateException("Monster not in player's pool");
+            }
+        }
+        selectedMonsters = monsters;
+    }
+
+    public List<Monster> getSelectedMonsters() {
+        return selectedMonsters;
+    }
+
+    public List<Monster> getMonsterPool() {
+        return monsterPool;
     }
 }
