@@ -60,6 +60,10 @@ public class DiceFace {
         return runeAmount;
     }
 
+    public Rune getRune() {
+        return new Rune(runeType,runeAmount);
+    }
+
     public Integer getInvocationLevel() {
         return invocationLevel;
     }
