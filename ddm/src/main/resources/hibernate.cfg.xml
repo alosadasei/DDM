@@ -19,6 +19,14 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.highlight_sql">true</property>
 
+        <!-- Mapeados -->
+
+        <mapping class="com.ddm.model.monster.MonsterTemplate"/>
+
+        <mapping class="com.ddm.model.game.Dice.DiceFace"/>
+
+        <mapping class="com.ddm.model.monster.Ability"/>
     </session-factory>
 </hibernate-configuration>
