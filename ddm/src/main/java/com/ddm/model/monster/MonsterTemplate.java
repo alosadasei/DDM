@@ -91,6 +91,10 @@ public class MonsterTemplate {
         return name;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public List<DiceFace> getDiceFaces() {
         return diceFaces;
     }

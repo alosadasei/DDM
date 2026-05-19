@@ -1,23 +1,35 @@
 package com.ddm.model.entity;
 
+import com.ddm.model.player.Player;
+
 public class DungeonMaster {
     
-    private Long id;
-    private int health;
+    private Player owner;
+
+    private int health = 100;
+
     private int positionX;
     private int positionY;
 
-    public DungeonMaster(int health, int positionX, int positionY) {
-        this.health = health;
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public DungeonMaster(Player owner, int x, int y) {
+        this.owner = owner;
+        this.positionX = x;
+        this.positionY = y;
     }
 
-    public void receiveDamage(int damage) {
-        this.health -= damage;
+    public Player getOwner() {
+        return owner;
     }
 
-    public boolean isAlive() {
-        return this.health > 0;
+    public int getHealth() {
+        return health;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
     }
 }
