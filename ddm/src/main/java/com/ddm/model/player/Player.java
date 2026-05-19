@@ -2,6 +2,8 @@ package com.ddm.model.player;
 
 import com.ddm.enums.RuneType;
 import com.ddm.model.entity.Monster;
+import com.ddm.model.monster.MonsterTemplate;
+import com.ddm.model.entity.DungeonMaster;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,12 +15,15 @@ public class Player {
     private Long id;
     private String name;
 
+    // 1 Dungeon Master
+    private DungeonMaster dungeonMaster;
+
     // 15 monstruos al inicio de la partida
-    private List<Monster> monsterPool = new ArrayList<>();
+    private List<MonsterTemplate> monsterPool = new ArrayList<>();
 
     // 3 monstruos que se seleccional al iniciar el turno
 
-    private List<Monster> selectedMonsters = new ArrayList<>();
+    private List<MonsterTemplate> selectedMonsters = new ArrayList<>();
 
     // Runas acumuladas
     private Map<RuneType, Integer> runePool = new HashMap<>();
@@ -51,19 +56,19 @@ public class Player {
         return runePool;
     }
 
-    public void addMonster(Monster monster) {
+    public void addMonster(MonsterTemplate monster) {
         if(monsterPool.size() >= 15) {
             throw new IllegalStateException("Full monster pool");
         }
         monsterPool.add(monster);
     }
 
-    public void selectMonsters(List<Monster> monsters) {
+    public void selectMonsters(List<MonsterTemplate> monsters) {
         if(monsters.size() != 3) {
             throw new IllegalStateException("Must be exactly 3 monsters");
         }
 
-        for (Monster monster : monsters) {
+        for (MonsterTemplate monster : monsters) {
             if(!monsterPool.contains(monster)){
                 throw new IllegalStateException("Monster not in player's pool");
             }
@@ -71,11 +76,23 @@ public class Player {
         selectedMonsters = monsters;
     }
 
-    public List<Monster> getSelectedMonsters() {
+    public List<MonsterTemplate> getSelectedMonsters() {
         return selectedMonsters;
     }
 
-    public List<Monster> getMonsterPool() {
+    public List<MonsterTemplate> getMonsterPool() {
         return monsterPool;
+    }
+
+    public void setDungeonMaster(DungeonMaster dm) {
+        this.dungeonMaster = dm;
+    }
+
+    public DungeonMaster getDungeonMaster() {
+        return dungeonMaster;
+    }
+
+    public String getName() {
+        return name;
     }
 }
